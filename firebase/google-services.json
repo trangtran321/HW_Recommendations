@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "323188340295",
+    "project_id": "helloworld-58ae7",
+    "storage_bucket": "helloworld-58ae7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:323188340295:android:db2fe1e57b84e0cec4e362",
+        "android_client_info": {
+          "package_name": "com.world.hello"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "323188340295-4trnfbhsg5vbs7gmr6d96r3db7hr2ktm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6BLrVJNmfdOpWlJbEg_1uXhwNMkasT_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "323188340295-4trnfbhsg5vbs7gmr6d96r3db7hr2ktm.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "323188340295-eu7cf0ajbtnmi8fmce0ti942or38nl92.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.nmsu.CS"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

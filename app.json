@@ -1,0 +1,103 @@
+{
+  "expo": {
+    "name": "helloworld",
+    "slug": "helloworld",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nmsu.CS",
+      "googleServicesFile": "./firebase/GoogleService-Info.plist",
+      "config": {
+        "googleMapsApiKey": "AIzaSyC6BLrVJNmfdOpWlJbEg_1uXhwNMkasT_U"
+      },
+      "infoPlist": {
+        "NSUserTrackingUsageDescription": "This app tracks a user in the background to give background notifications when a user is near a recommended location.",
+        "NSPhotoLibraryUsageDescription": "This app will allow users to upload pictures from their library after having been to a location.",
+        "NSCalendarsFullAccessUsageDescription": "This app will allow access to the calendar in order to create events related to the location.",
+        "NSCameraUsageDescription": "This app will allow users to take pictures and upload to site when user is at a location.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs to keep track of a user's location so that it can send timely notifications based on user's location and surrounding businesses.",
+        "NSSpeechRecognitionUsageDescription": "This feature will be added to aid users who are unable to use tap and swipe features to add recommendations and navigate through the app.",
+        "NSLocationWhenInUseUsageDescription": "This app needs to keep track of a user's location so that it can send timely notifications based on user's location and surrounding businesses.",
+        "NSLocationAlwaysUsageDescription": "This app needs to keep track of a user's location so that it can send timely notifications based on user's location and surrounding businesses."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "googleServicesFile": "./firebase/google-services.json",
+      "package": "com.nmsu.CS"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "@react-native-firebase/app",
+      "@react-native-google-signin/google-signin",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "react-native-permissions",
+        { 
+          "iosPermissions":[
+            "AppTrackingTransparency", 
+            "Calendars",
+            "Camera",
+            "LocationAccuracy",
+            "LocationAlways",
+            "LocationWhenInUse",
+            "Motion",
+            "Notifications",
+            "SpeechRecognition",
+            "PhotoLibrary"
+          ]
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Allow Hello, World to use your location.",
+          "isIosBackgroundLocationEnabled": true
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ffa43630-69af-4807-a5ee-b9a1066befb9"
+      }
+    },
+    "packagerOpts": {
+      "config": "metro.config.js"
+    }
+  }
+}
