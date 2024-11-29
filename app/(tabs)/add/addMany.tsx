@@ -7,7 +7,7 @@ import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 're
 import Button from '@/components/Button';
 
 
-export default function AddRec(){
+export default function AddMany(){
     const user = auth().currentUser; 
     const [text, setText] = useState<string|undefined>('');
     const [place, setPlace] = useState<string | undefined>();
@@ -93,28 +93,33 @@ export default function AddRec(){
         }
     }
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Addrecommendation</Text>
-            <View style={{zIndex: 1, flex: 0.5, width: '70%', marginTop: 15}}>
-                <GooglePlacesAutocomplete
-                    placeholder='Search'
-                    onPress={(data, details = null) => {
-                        onPlaceSelected(data, details)
-                    }} 
-                    fetchDetails={true}
-                    query={{
-                        key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
-                        language: 'en'
-                    }}
-                    onFail={error => console.log(error)}
-                />
-            </View>
-            <Button 
-                label='Add'
-                onPress={addPlaceToList}/>
-            <Text style={styles.text}> 
-                {text}
-            </Text>
+        // <View style={styles.container}>
+        //     <Text style={styles.text}>Addrecommendation</Text>
+        //     <View style={{zIndex: 1, flex: 0.5, width: '70%', marginTop: 15}}>
+        //         <GooglePlacesAutocomplete
+        //             placeholder='Search'
+        //             onPress={(data, details = null) => {
+        //                 onPlaceSelected(data, details)
+        //             }} 
+        //             fetchDetails={true}
+        //             query={{
+        //                 key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
+        //                 language: 'en'
+        //             }}
+        //             onFail={error => console.log(error)}
+        //         />
+        //     </View>
+        //     <Button 
+        //         label='Add'
+        //         onPress={addPlaceToList}/>
+        //     <Text style={styles.text}> 
+        //         {text}
+        //     </Text>
+        // </View>
+        <View> 
+            <Text>TODO:: </Text>
+            <Text> 1. Add Text input that takes strings with commas delimiting the different recommendations</Text>
+            <Text> 2. Add function to split text input, and then use the functions above from add one. </Text>
         </View>
     )
 }

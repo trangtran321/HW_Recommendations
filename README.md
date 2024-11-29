@@ -1,33 +1,40 @@
 
 # ------------------------------------
-1. To Run on Simulator via expo first time: 
+<!--
+We cannot build right now b/c there is no access for push notifications. 
+   1. To Run on Simulator via expo first time: 
    - in commandline: npm install -g eas-cli 
    - in commandline: eas login 
          Username/Email: helloworld2024@gmail.com
          Password: Same as gmail password 
-   - in commandline: eas build:configure // you may not have to run this since it is already built 
+   - in commandline: eas build:configure // you may not have to run this since it is already built  -->
 
-2. To Run on Simulator afterwards: 
+1. You will likely need to install: npm install -g eas-cli 
+   Reference: https://docs.expo.dev/develop/development-builds/introduction/
+   First time using eas you will probably need to run:
+   in commandline: eas login 
+         Username/Email: helloworld2024@gmail.com
+         Password: Same as gmail password 
+2. To Run on Simulator: 
    - in commandline: NODE_ENV=local npx expo start 
          -- NOTE:: You will need to put the .env.local file into the helloworld directory before running this. It has our config 
    --- OR ---
    - in commandline: npx expo run:ios 
       - press 'r' every time you save and make changes to see it reflected in simulator
    
-3. To build a new version of app for ios:s
+3. To build a new version of app for ios:
    - in commandline: eas build --profile development-simulator --platform ios
 
 4. To add a new dependency: 
    - try to find a library that is compatible with react native
    1. in commandline: install whatever package it is with 'npm' or 'yarn' 
-   2. Once it's done with installagtion. 
+   2. Once it's done with installation. 
       - in commandline: cd ios
       - in commandline: pod install 
    3. to use go back to root w/  ' cd .. '
+   4. then run 'npx expo run:ios' 
 
-## More info @ https://docs.expo.dev/build/setup/
-
- 
+# More info @ https://docs.expo.dev/build/setup/
 
 
 

@@ -1,4 +1,4 @@
-package com.world.hello
+package com.nmsu.CS
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

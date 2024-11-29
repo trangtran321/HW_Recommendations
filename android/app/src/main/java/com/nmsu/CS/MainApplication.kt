@@ -1,4 +1,4 @@
-package com.world.hello
+package com.nmsu.CS
 
 import android.app.Application
 import android.content.res.Configuration

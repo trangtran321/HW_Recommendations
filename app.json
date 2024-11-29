@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.nmsu.CS",
-      "googleServicesFile": "./firebase/GoogleService-Info.plist",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "config": {
         "googleMapsApiKey": "AIzaSyC6BLrVJNmfdOpWlJbEg_1uXhwNMkasT_U"
       },
@@ -41,7 +41,12 @@
     },
     "plugins": [
       "@react-native-firebase/app",
-      "@react-native-google-signin/google-signin",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps._some_id_here_"
+        }
+      ],
       [
         "expo-build-properties",
         {

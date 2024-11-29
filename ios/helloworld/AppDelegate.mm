@@ -1,6 +1,10 @@
 #import "AppDelegate.h"
-#import <Firebase/Firebase.h>
+// @generated begin react-native-maps-import - expo prebuild (DO NOT MODIFY) sync-f2f83125c99c0d74b42a2612947510c4e08c423a
+#if __has_include(<GoogleMaps/GoogleMaps.h>)
 #import <GoogleMaps/GoogleMaps.h>
+#endif
+// @generated end react-native-maps-import
+#import <Firebase/Firebase.h>
 
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTLinkingManager.h>
@@ -9,7 +13,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  [GMSServices provideAPIKey:@"AIzaSyC6BLrVJNmfdOpWlJbEg_1uXhwNMkasT_U"]; // add this line using the api key obtained from Google Console
+// @generated begin react-native-maps-init - expo prebuild (DO NOT MODIFY) sync-45732707fa8c215a46801fcd7b1c15e48f5f7faf
+#if __has_include(<GoogleMaps/GoogleMaps.h>)
+  [GMSServices provideAPIKey:@"AIzaSyC6BLrVJNmfdOpWlJbEg_1uXhwNMkasT_U"];
+#endif
+// @generated end react-native-maps-init
 // @generated begin @react-native-firebase/app-didFinishLaunchingWithOptions - expo prebuild (DO NOT MODIFY) sync-ecd111c37e49fdd1ed6354203cd6b1e2a38cccda
 [FIRApp configure];
 // @generated end @react-native-firebase/app-didFinishLaunchingWithOptions

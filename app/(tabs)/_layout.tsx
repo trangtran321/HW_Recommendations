@@ -1,6 +1,8 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
+
+//This is the bottom tab layout that will allow us to navigate once the user is logged in.
 export default function TabLayout(){
     return (
         <Tabs
@@ -32,19 +34,19 @@ export default function TabLayout(){
                     ),
                 }}/>
             <Tabs.Screen 
-                name="addRec" 
-                options={{
-                    title: 'Add Reccommendations',
-                    tabBarIcon: ({color, focused}) => (
-                        <Ionicons name={focused? 'add-circle' : 'add-circle-outline'} color={color} size={24}/>
-                    ),
-                }}/>
-            <Tabs.Screen 
-                name="recList" 
+                name="lists" 
                 options={{
                     title: 'List',
                     tabBarIcon: ({color, focused}) => (
                         <Ionicons name={focused? 'list-outline' : 'list-sharp'} color={color} size={24}/>
+                    ),
+                }}/>
+            <Tabs.Screen 
+                name="add"
+                options={{
+                    title: 'Add',
+                    tabBarIcon: ({color, focused}) => (
+                        <Ionicons name={focused? 'add-circle' : 'add-circle-outline'} color={color} size={24}/>
                     ),
                 }}/>
         </Tabs>

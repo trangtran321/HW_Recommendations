@@ -5,6 +5,13 @@ import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestor
 import MapView, { PROVIDER_GOOGLE, Region } from 'react-native-maps'; 
 import * as Location from 'expo-location';
 
+// TODO:: 
+// 1. Put pins on map taken from Firestore
+// 2. Decide if we want to use google maps - if so, need to use PROVIDER_GOOGLE in MAPVIEW.
+// 3. Functionality to zoom into map and click on pin to show modal giving quick-view of location
+
+
+
 //add provider={PROVIDER_GOOGLE} to <MapView> 
 const INITAL_REGION = {
   latitude: 37.33,
@@ -12,7 +19,8 @@ const INITAL_REGION = {
   latitudeDelta: 2,
   longitudeDelta: 2
 }
-export default function Add(){
+
+export default function Map(){
     const user = auth().currentUser; 
     const [currentRegion, setCurrentRegion] = useState<Region | undefined>();
     

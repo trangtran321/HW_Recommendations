@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:323188340295:android:db2fe1e57b84e0cec4e362",
         "android_client_info": {
-          "package_name": "com.world.hello"
+          "package_name": "com.nmsu.CS"
         }
       },
       "oauth_client": [
@@ -34,7 +34,7 @@
               "client_id": "323188340295-eu7cf0ajbtnmi8fmce0ti942or38nl92.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.world.hello"
+                "bundle_id": "com.nmsu.CS"
               }
             }
           ]

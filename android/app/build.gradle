@@ -86,9 +86,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.world.hello'
+    namespace 'com.nmsu.CS'
     defaultConfig {
-        applicationId 'com.world.hello'
+        applicationId 'com.nmsu.CS'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

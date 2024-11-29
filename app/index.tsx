@@ -9,6 +9,7 @@ import {
 import { router } from 'expo-router';
 import auth from '@react-native-firebase/auth';
 import 'react-native-get-random-values' 
+
 interface User{
     id: string;
     name: string | null;
