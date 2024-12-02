@@ -30,6 +30,7 @@
     "expo-dev-client": "~5.0.4",
     "expo-device": "~7.0.1",
     "expo-font": "~13.0.1",
+    "expo-google-places": "^0.2.5",
     "expo-haptics": "~14.0.0",
     "expo-image": "~2.0.2",
     "expo-linking": "~7.0.3",
