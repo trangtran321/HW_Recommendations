@@ -1,17 +1,23 @@
+import { ReactNode } from 'react';
 import { StyleSheet, View, Pressable, Text } from 'react-native';
+
 
 type Props={
     label: string;
     onPress? : () => void;
+    onLongPress?: () => void;
+    children?: ReactNode; 
 }
 
-export default function Button({label, onPress}:Props){
+export default function Button({label, onPress, children, onLongPress}:Props){
     return (
         <View style={styles.buttonContainer}>
             <Pressable 
                 style={styles.button}
-                onPress={onPress}>
+                onPress={onPress}
+                onLongPress={onLongPress}>
                 <Text style={styles.buttonLabel}> {label} </Text>
+                {children}
             </Pressable>
         </View>
     )
