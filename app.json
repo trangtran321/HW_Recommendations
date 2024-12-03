@@ -11,7 +11,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.nmsu.CS",
-      "googleServicesFile": "./firebase/GoogleService-Info.plist",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "config": {
         "googleMapsApiKey": "AIzaSyC6BLrVJNmfdOpWlJbEg_1uXhwNMkasT_U"
       },
@@ -67,9 +67,9 @@
       ],
       [
         "react-native-permissions",
-        {
-          "iosPermissions": [
-            "AppTrackingTransparency",
+        { 
+          "iosPermissions":[
+            "AppTrackingTransparency", 
             "Calendars",
             "Camera",
             "LocationAccuracy",
@@ -87,12 +87,6 @@
         {
           "locationAlwaysAndWhenInUsePermission": "Allow Hello, World to use your location.",
           "isIosBackgroundLocationEnabled": true
-        }
-      ],
-      [
-        "expo-google-places",
-        {
-          "iosApiKey": "AIzaSyALl7uzdl2WrXHW83uqWwIDhekQEqP-d5U"
         }
       ]
     ],

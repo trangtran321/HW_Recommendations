@@ -7,8 +7,6 @@ export default function ListsLayout(){
     return (
         <Stack> 
           <Stack.Screen name="index" options={{title: "Cities"}}/>
-          <Stack.Screen name="notificationExample" options={{title: "Local Notification Example"}}/>
-          <Stack.Screen name="[city]" options={{title: ""}}/>
       </Stack>
     )
 }

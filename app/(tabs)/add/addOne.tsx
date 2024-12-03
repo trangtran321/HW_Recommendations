@@ -1,27 +1,25 @@
-import { useEffect, useState} from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import { useEffect, useState, useRef } from 'react';
+import { View, StyleSheet, Text, FlatList, TextInput } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; 
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'; 
 import Button from '@/components/Button';
 
-
-//TODO:: - Just UI/UX for this page. I think all functionality is done.
-
+//TODO:: Just UI/UX for this page. I think all functionality is done.
 
 export default function AddOne(){
     const user = auth().currentUser; 
     const [text, setText] = useState<string|undefined>('');
     const [place, setPlace] = useState<string | undefined>();
     const [placeDetails, setPlaceDetails] = useState<{
-                placeId: string | undefined,
                 name: string | undefined,
                 address: string | undefined, 
                 city: string | undefined,
                 state: string | undefined,
                 long: number | undefined,
                 lat: number | undefined
-              }>({placeId: '', name: '', address: '', city: '', state: '', long: 0, lat: 0});
+              }>({name: '', address: '', city: '', state: '', long: 0, lat: 0});
     const [placeList, setPlaceList] = useState<FirebaseFirestoreTypes.DocumentData[]>([]); 
 
     const onPlaceSelected = (data: (GooglePlaceData | undefined), details: (GooglePlaceDetail | null)) => {
@@ -29,25 +27,19 @@ export default function AddOne(){
         if (!data || !details) return; 
 
         const addressComponents = details.address_components
-        let city = ""; 
-        addressComponents.forEach((component)=>{
-            if (component.types.includes("locality") && component.types.includes("political")){
-                city = component.long_name;
-                console.log(component.long_name);
-            }
-            
-        })
         
+        //get place's data like name, address, city and state 
         const placeData = { 
-            placeId: data.place_id,
             name: data.structured_formatting['main_text'],
             address: details.formatted_address || '',
-            city: city,
+            city: addressComponents[2].long_name,
             state: addressComponents[4].long_name,
             long: details.geometry.location.lng,
             lat: details.geometry.location.lat
         }
+        // const name = data.structured_formatting['main_text'];
         const placeId = data.place_id;
+        console.log(addressComponents[3].types, addressComponents[3].long_name)
         console.log(placeData.name, placeId, placeData.address, placeData.lat, placeData.long, placeData.city, placeData.state)
         setPlaceDetails(placeData); 
         setPlace(placeData.name); 
@@ -86,7 +78,7 @@ export default function AddOne(){
                 alert(`This place was added to your ${placeDetails.city} list.`)
                 setPlaceList([...placeList, placeDetails]);
                 setPlace('');
-                setPlaceDetails({placeId: '', name: '', address: '', city: '', state: '', long: 0, lat: 0});
+                setPlaceDetails({name: '', address: '', city: '', state: '', long: 0, lat: 0});
                 return; 
             } catch (error){
                 console.error("Error adding document: ", error);
