@@ -63,7 +63,7 @@ export default function Index(){
       }
 
       fetchPlaces();
-  }, [user])
+  }, [user, placesByCity])
 
   const handlePress = (city:string) => {
     const recommendations = JSON.stringify(placesByCity[city])

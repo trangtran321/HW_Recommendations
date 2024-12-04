@@ -49,6 +49,7 @@ export default function TabLayout(){
                         <Ionicons name={focused? 'add-circle' : 'add-circle-outline'} color={color} size={24}/>
                     ),
                 }}/>
+
         </Tabs>
     )
 }

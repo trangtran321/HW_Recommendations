@@ -9,7 +9,7 @@ export default function ListsLayout(){
           <Stack.Screen name="index" options={{title: "Cities"}}/>
           <Stack.Screen name="notificationExample" options={{title: "Local Notification Example"}}/>
           <Stack.Screen name="[city]" options={{title: ""}}/>
-      </Stack>
+        </Stack>
     )
 }
 

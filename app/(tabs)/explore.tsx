@@ -21,7 +21,6 @@ interface GroupedPlacesByCity {
     [city: string] : Place[];
 }
 
-
 export default function Explore(){
     const user = auth().currentUser; 
     const [placesByCity, setPlacesByCity] = useState<GroupedPlacesByCity>({});

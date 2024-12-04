@@ -3,7 +3,7 @@ import { PropsWithChildren } from 'react';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 type Props = PropsWithChildren<{
-  location: string;
+  location?: string;
   isVisible: boolean;
   onClose: () => void;
 }>;

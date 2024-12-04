@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {StyleSheet, View, Text, FlatList} from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import { Link, useLocalSearchParams } from 'expo-router';
 import Button from '@/components/Button';
 import * as ExpoGooglePlaces from 'expo-google-places';
 import auth from '@react-native-firebase/auth';
@@ -24,6 +24,8 @@ interface Place {
     city: string;
     address: string;
     state: string;
+    longitude: number;
+    lattitude: number;
   }
 
 export default function City(){
@@ -33,7 +35,9 @@ export default function City(){
                                                 | undefined>(); 
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isEditVisible, setIsEditVisible] =  useState(false);
+    const [currentLocation, setCurrentLocation] = useState<Place|undefined>();
     let recommendations: Place[] = [];
+    
     if (typeof(recs) == "string"){
         recommendations = JSON.parse(recs);
     }
@@ -67,12 +71,14 @@ export default function City(){
         setIsEditVisible(false);
     }
 
-    function handleLongPress(place: Place) {
+    function handleLongPress(item:Place) {
+        setCurrentLocation(item); 
         setIsEditVisible(true);
         console.log("long pressed!");
     }
 
-    async function deletePlace(item:Place){
+    async function deletePlace(item:Place|undefined){
+        setCurrentLocation(item);
         if (user && item){
             try { 
                 const placesRef = firestore().collection("users").doc(user.uid);
@@ -85,6 +91,9 @@ export default function City(){
                         alert("Your recommendation has been deleted.");
                     }
                 })
+                //reset the recommendations array so that you can get updated values
+                const plax = (await placesRef.collection("places").get()).docs;
+                console.log(plax);
             }    
             catch (error){
                 console.log("Error deleting place:", error);
@@ -110,33 +119,40 @@ export default function City(){
                                 onPress={()=>{handlePress(item)}}
                                 onLongPress={()=>{handleLongPress(item)}}
                                 />
-                            <LocationDetailsModal location={item.name} isVisible={isModalVisible} onClose={onModalClose}>
-                                <Text style={styles.text}>Address: {item.address}</Text>
-                                {locationDetails? 
-                                    <View>
-                                        <Text style={styles.text}> Phone Number: {locationDetails.phoneNumber}</Text>
-                                        <Text style={styles.text}> Website: {locationDetails.website} </Text>
-                                        <Text style={styles.text}> Cost: {locationDetails.priceLevel} </Text>
-                                        <Text style={styles.text}> Rating: {locationDetails.userRatingsTotal}</Text>
-                                        {locationDetails.openingHours.weekdayText ?
-                                            <View>
-                                               <Text style={styles.text}>{locationDetails.openingHours.weekdayText[0]}</Text>
-                                               <Text style={styles.text}>{locationDetails.openingHours.weekdayText[1]}</Text>
-                                               <Text style={styles.text}>{locationDetails.openingHours.weekdayText[2]}</Text>
-                                               <Text style={styles.text}>{locationDetails.openingHours.weekdayText[3]}</Text>
-                                               <Text style={styles.text}>{locationDetails.openingHours.weekdayText[4]}</Text>
-                                               <Text style={styles.text}>{locationDetails.openingHours.weekdayText[5]}</Text>
-                                               <Text style={styles.text}>{locationDetails.openingHours.weekdayText[6]}</Text>
-                                            </View> : null}
-                                    </View>
-                                : null}
-                            </LocationDetailsModal>
-                            <LocationEditModal
-                                location={item.name} isVisible={isEditVisible} onClose={onEditClose}> 
-                                <Button label={"Delete Recommendation"} onPress={()=>{deletePlace(item)}}/>    
-                            </LocationEditModal>
                         </View>
+                        
                     )}/>
+                <LocationDetailsModal location={currentLocation?.name} isVisible={isModalVisible} onClose={onModalClose}>
+                    <Text style={styles.text}>Address: {currentLocation?.address}</Text>
+                    {locationDetails? 
+                        <View>
+                            <Text style={styles.text}> Phone Number: {locationDetails.phoneNumber}</Text>
+                            <Text style={styles.text}> Website: {locationDetails.website} </Text>
+                            <Text style={styles.text}> Cost: {locationDetails.priceLevel} </Text>
+                            <Text style={styles.text}> Rating: {locationDetails.userRatingsTotal}</Text>
+                            {locationDetails.openingHours?
+                                <View> 
+                                    {locationDetails.openingHours.weekdayText ?
+                                    <View>
+                                       <Text style={styles.text}>{locationDetails.openingHours.weekdayText[0]}</Text>
+                                       <Text style={styles.text}>{locationDetails.openingHours.weekdayText[1]}</Text>
+                                       <Text style={styles.text}>{locationDetails.openingHours.weekdayText[2]}</Text>
+                                       <Text style={styles.text}>{locationDetails.openingHours.weekdayText[3]}</Text>
+                                       <Text style={styles.text}>{locationDetails.openingHours.weekdayText[4]}</Text>
+                                       <Text style={styles.text}>{locationDetails.openingHours.weekdayText[5]}</Text>
+                                       <Text style={styles.text}>{locationDetails.openingHours.weekdayText[6]}</Text>
+                                    </View> : null}
+                                </View>
+                                :null
+                            }
+                        </View>
+                    : null}
+                </LocationDetailsModal>
+                <LocationEditModal
+                    location={currentLocation?.name} isVisible={isEditVisible} onClose={onEditClose}> 
+                    <Button label={"Delete Recommendation"} onPress={()=>{deletePlace(currentLocation)}}/>    
+                </LocationEditModal>
+                <Link style={styles.text}href='./notificationExample'>Notification Example</Link>
             </View>  
         </View> 
     )
