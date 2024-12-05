@@ -3593,7 +3593,7 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
-  - react-native-google-maps (from `/Users/trangtran/Documents/GitHub/HW_Recommendations/node_modules/react-native-maps`)
+  - react-native-google-maps (from `/Users/NhanLe/Documents/NMSU/Grad/CS515/HW_Recommendations/node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -3809,7 +3809,7 @@ EXTERNAL SOURCES:
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
   react-native-google-maps:
-    :path: "/Users/trangtran/Documents/GitHub/HW_Recommendations/node_modules/react-native-maps"
+    :path: "/Users/NhanLe/Documents/NMSU/Grad/CS515/HW_Recommendations/node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
