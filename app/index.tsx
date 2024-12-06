@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
+import { Text, View, StyleSheet, ActivityIndicator, TouchableOpacity } from "react-native";
 import HwLogo from "../assets/images/helloworld.svg"; 
 import Button from '../components/Button';
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import {
     GoogleSignin,
     isSuccessResponse,
   } from '@react-native-google-signin/google-signin';
-import { router } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import auth from '@react-native-firebase/auth';
 import 'react-native-get-random-values' 
 
@@ -70,6 +70,8 @@ export default function Index() {
     }
   
   return (
+    <>
+     <Stack.Screen options={{ headerShown: false }} />
     <View style={styles.container} >
     <View style={styles.logo_wrapper}>
       <HwLogo width={125} height={125}/>
@@ -77,29 +79,44 @@ export default function Index() {
     {loading ? (
       <ActivityIndicator size={'small'} style={{margin: 28}} /> 
     ) : (
-      <Button label="Sign In" onPress={_signIn}/>)
+      <TouchableOpacity style={styles.button} onPress={_signIn}>
+                    <Text style={styles.buttonText}>Sign In</Text>
+                </TouchableOpacity>
+      )
     }
     </View>
+    </>
+    
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1, 
-    backgroundColor: '#25292e',
-    alignItems: 'center',
-    justifyContent: 'center',
+      flex: 1,
+      backgroundColor: '#25292e',
+      alignItems: 'center',
+      justifyContent: 'center',
   },
   text: {
-    color: '#ffff',
+      color: '#ffff',
   },
   button: {
-    fontSize: 20,
-    textDecorationLine: 'underline',
-    color: '#ffff',
+      backgroundColor: '#767c85',
+      borderRadius: 8,
+      marginTop: 30,
+      paddingVertical: 8,
+      paddingHorizontal: 25,
+      shadowColor: "#000",
+     
+  },
+  buttonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: '600',
+      textAlign: 'center',
   },
   logo_wrapper: {
-    alignItems: 'center',
-    padding: 30,
-  }
+      alignItems: 'center',
+      padding: 30,
+  },
 });
