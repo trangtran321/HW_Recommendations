@@ -6,6 +6,7 @@ import { router } from 'expo-router';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import * as Location from 'expo-location';
+import NotificationService from '@/utils/notificationService';
 
 //TODO:: This is the current landing page after signing in, we can change it to jsut be the 'map.tsx' file
 //We can change this one to be the signout/delete user/profile page of user 
@@ -97,6 +98,7 @@ export default function Explore(){
                         </View>
                     ))}
                 </View>
+                <NotificationService/> 
                 <Button label="signout" onPress={handleLogout}/>
             </View>
         </>

@@ -94,6 +94,11 @@
         {
           "iosApiKey": "AIzaSyALl7uzdl2WrXHW83uqWwIDhekQEqP-d5U"
         }
+      ],
+      ["expo-notifications",
+        {
+          "enableBackgroundRemoteNotifications": true
+        }
       ]
     ],
     "experiments": {

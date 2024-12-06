@@ -1,9 +1,4 @@
-import { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
-import auth from '@react-native-firebase/auth';
-import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; 
-import * as Notifications from 'expo-notifications';
+import { View, StyleSheet, Text } from 'react-native';
 import Button from '@/components/Button';
 import { router } from 'expo-router';
 
