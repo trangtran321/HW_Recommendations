@@ -1,5 +1,5 @@
 import { useEffect, useState} from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'; 
@@ -120,10 +120,10 @@ export default function AddOne(){
                     onFail={error => console.log(error)}
                 />
             </View>
-            <Button 
-                label='Add'
-                onPress={addPlaceToList}/>
-            <Text style={styles.text}> 
+            <TouchableOpacity style={styles.customButton} onPress={addPlaceToList}>
+                <Text style={styles.customButtonText}>Add The Place To My List</Text>
+            </TouchableOpacity>
+            <Text style={styles.text2}> 
                 {text}
             </Text>
         </View>
@@ -156,6 +156,30 @@ const styles = StyleSheet.create(
             textAlign: 'center',
             padding: 30,
             margin: 20,
+        },
+        text2: {
+        color: '#ffff',
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 30,
+        marginTop: -10,
+        },
+        customButton: {
+            backgroundColor: '#ffd33d',
+            paddingVertical: 12,
+            paddingHorizontal: 20,
+            borderRadius: 30,
+            marginTop: 20,
+            width: '70%',
+            alignItems: 'center',
+            marginBottom: 20,
+        },
+        customButtonText: {
+            color: '#25292e',
+            fontSize: 16,
+            fontWeight: 'bold',
+            textAlign: 'center'
         },
     }
 )
