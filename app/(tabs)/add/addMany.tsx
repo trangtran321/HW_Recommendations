@@ -109,65 +109,67 @@ export default function AddMany() {
     };
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
-            {/* <Stack.Screen options={{ headerShown: false }} /> uncomment this to remove header, would need to add a back button */}
-            <Text style={styles.text}>Add Multiple Places</Text>
-            <View style={styles.autocompleteContainer}>
-                <GooglePlacesAutocomplete
-                    placeholder="Search"
-                    onPress={(data, details = null) => {
-                        onPlaceSelected(data, details);
-                    }}
-                    fetchDetails={true}
-                    query={{
-                        key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
-                        language: 'en',
-                    }}
-                    onFail={(error) => console.log(error)}
-                    styles={{
-                        textInput: styles.textInput,
-                        container: styles.autocompleteInputContainer,
-                        listView: styles.autocompleteListView,
-                    }}
-                />
-            </View>
-
-            <TouchableOpacity style={styles.customButton} onPress={addAllPendingPlacesToList}>
-                <Text style={styles.customButtonText}>Add The Places Below To My List</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.text2}>Places To Be Added: </Text>
-            <FlatList
-                data={pendingPlaces}
-                keyExtractor={(item, index) => item.placeId || index.toString()}
-                renderItem={({ item }) => (
-                    <View style={styles.placeItem}>
-                        <View style={styles.placeTextContainer}>
-                            <Text style={styles.placeName}>{item.name}</Text>
-                            <Text style={styles.placeAddress}>{item.address}</Text>
-                        </View>
-                        <TouchableOpacity onPress={() => removePlaceFromPending(item.placeId)}>
-                            <Icon name="trash" size={20} color="#ff0000" />
-                        </TouchableOpacity>
+        <FlatList
+            data={pendingPlaces}
+            keyExtractor={(item, index) => item.placeId || index.toString()}
+            ListHeaderComponent={
+                
+                <View style={styles.header}>
+                    {/* <Stack.Screen options={{ headerShown: false }} />  */}
+                    <Text style={styles.text}>Add Multiple Places</Text>
+                    <View style={styles.autocompleteContainer}>
+                        <GooglePlacesAutocomplete
+                            placeholder="Search"
+                            onPress={(data, details = null) => onPlaceSelected(data, details)}
+                            fetchDetails={true}
+                            query={{
+                                key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
+                                language: 'en',
+                            }}
+                            styles={{
+                                textInput: styles.textInput,
+                                container: styles.autocompleteInputContainer,
+                            }}
+                        />
                     </View>
-                )}
-                style={styles.placeListContainer}
-            />
-        </ScrollView>
+                    <TouchableOpacity style={styles.customButton} onPress={addAllPendingPlacesToList}>
+                        <Text style={styles.customButtonText}>Add The Places Below To My List</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.text2}>Places To Be Added: </Text>
+                </View>
+            }
+        
+            renderItem={({ item }) => (
+                <View style={styles.placeItem}>
+                    <View style={styles.placeTextContainer}>
+                        <Text style={styles.placeName}>{item.name}</Text>
+                        <Text style={styles.placeAddress}>{item.address}</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => removePlaceFromPending(item.placeId)}>
+                        <Icon name="trash" size={20} color="#ff0000" />
+                    </TouchableOpacity>
+                </View>
+            )}
+            style={styles.placeListContainer}
+            contentContainerStyle={{ backgroundColor: '#25292e', paddingBottom: 20 }}
+        />
     );
 }
-
 const styles = StyleSheet.create({
+    header: {
+        alignItems: 'center',
+        backgroundColor: '#25292e',
+    },
     container: {
         flexGrow: 1,
         backgroundColor: '#25292e',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '100%',
+        // justifyContent: 'flex-start',
+        // width: '100%',
         paddingBottom: 20,
     },
     autocompleteContainer: {
-        zIndex: 10,
+        // zIndex: 10,
         width: '70%',
         marginTop: 20,
     },
@@ -185,15 +187,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
         padding: 30,
-        marginTop: -10,
+        // marginTop: -10,
     },
     placeListContainer: {
-        width: '80%',
-        marginTop: 20,
+        width: '100%',
+        flex:1,
+        backgroundColor: '#25292e'
+        // marginTop: 20,
     },
     placeItem: {
         backgroundColor: '#444',
         marginBottom: 10,
+        margin:20,
         padding: 10,
         borderRadius: 5,
         flexDirection: 'row',
@@ -202,12 +207,13 @@ const styles = StyleSheet.create({
     },
     placeTextContainer: {
         flex: 1,
-        justifyContent: 'center',
+        width: '100%',
+        // justifyContent: 'center',
     },
     placeName: {
         color: '#fff',
         fontWeight: 'bold',
-        marginBottom: 5,
+        // marginBottom: 5,
     },
     placeAddress: {
         color: '#fff',
