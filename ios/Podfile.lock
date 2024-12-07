@@ -1145,11 +1145,11 @@ PODS:
     - abseil/meta/type_traits
     - abseil/xcprivacy
   - abseil/xcprivacy (1.20240116.2)
-  - AppAuth (1.7.5):
-    - AppAuth/Core (= 1.7.5)
-    - AppAuth/ExternalUserAgent (= 1.7.5)
-  - AppAuth/Core (1.7.5)
-  - AppAuth/ExternalUserAgent (1.7.5):
+  - AppAuth (1.7.6):
+    - AppAuth/Core (= 1.7.6)
+    - AppAuth/ExternalUserAgent (= 1.7.6)
+  - AppAuth/Core (1.7.6)
+  - AppAuth/ExternalUserAgent (1.7.6):
     - AppAuth/Core
   - boost (1.84.0)
   - BoringSSL-GRPC (0.0.36):
@@ -1458,7 +1458,7 @@ PODS:
   - Firebase/Firestore (11.5.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 11.5.0)
-  - FirebaseAppCheckInterop (11.5.0)
+  - FirebaseAppCheckInterop (11.6.0)
   - FirebaseAuth (11.5.0):
     - FirebaseAppCheckInterop (~> 11.0)
     - FirebaseAuthInterop (~> 11.0)
@@ -1468,7 +1468,7 @@ PODS:
     - GoogleUtilities/Environment (~> 8.0)
     - GTMSessionFetcher/Core (< 5.0, >= 3.4)
     - RecaptchaInterop (~> 100.0)
-  - FirebaseAuthInterop (11.5.0)
+  - FirebaseAuthInterop (11.6.0)
   - FirebaseCore (11.5.0):
     - FirebaseCoreInternal (= 11.5)
     - GoogleUtilities/Environment (~> 8.0)
@@ -1497,7 +1497,7 @@ PODS:
     - gRPC-Core (~> 1.65.0)
     - leveldb-library (~> 1.22)
     - nanopb (~> 3.30910.0)
-  - FirebaseSharedSwift (11.5.0)
+  - FirebaseSharedSwift (11.6.0)
   - fmt (9.1.0)
   - glog (0.3.5)
   - Google-Maps-iOS-Utils (4.2.2):
@@ -3559,6 +3559,8 @@ DEPENDENCIES:
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
+  - Google-Maps-iOS-Utils
+  - GoogleMaps
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -3895,7 +3897,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   abseil: d121da9ef7e2ff4cab7666e76c5a3e0915ae08c3
-  AppAuth: 501c04eda8a8d11f179dbe8637b7a91bb7e5d2fa
+  AppAuth: d4f13a8fe0baf391b2108511793e4b479691fb73
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946
   BoringSSL-GRPC: ca6a8e5d04812fce8ffd6437810c2d46f925eaeb
   DoubleConversion: f16ae600a246532c4020132d54af21d0ddb2a385
@@ -3932,15 +3934,15 @@ SPEC CHECKSUMS:
   EXUpdatesInterface: 1dcebac98ac5dad4289e6ff2bd5616822e894397
   FBLazyVector: bc70dcb22ad30ce734a7cce7210791dc737e230f
   Firebase: 7a56fe4f56b5ab81b86a6822f5b8f909ae6fc7e2
-  FirebaseAppCheckInterop: d265d9f4484e7ec1c591086408840fdd383d1213
+  FirebaseAppCheckInterop: 347aa09a805219a31249b58fc956888e9fcb314b
   FirebaseAuth: d8ad770642af39d1be932094be5f5230efb0ea74
-  FirebaseAuthInterop: 1219bee9b23e6ebe84c256a0d95adab53d11c331
+  FirebaseAuthInterop: a919d415797d23b7bfe195a04f322b86c65020ef
   FirebaseCore: 93abc05437f8064cd2bc0a53b768fb0bc5a1d006
   FirebaseCoreExtension: ddb2eb987f736b714d30f6386795b52c4670439e
   FirebaseCoreInternal: f47dd28ae7782e6a4738aad3106071a8fe0af604
   FirebaseFirestore: 3f59cb7b6f62b362886743d4c92e83a66b5e0a5d
   FirebaseFirestoreInternal: d8d71a7f27834573404834172886183f1cd48c3d
-  FirebaseSharedSwift: 302ac5967857ad7e7388b15382d705b8c8d892aa
+  FirebaseSharedSwift: a4e5dfca3e210633bb3a3dfb94176c019211948b
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
   Google-Maps-iOS-Utils: f77eab4c4326d7e6a277f8e23a0232402731913a
@@ -4036,6 +4038,6 @@ SPEC CHECKSUMS:
   UMAppLoader: bda51f73f8599e336a778b23e0956130d1e244d5
   Yoga: 513b871d622689bd53b51481bbcfb6b8f1a3de5b
 
-PODFILE CHECKSUM: 7de174beb5c736b5b34f988d9d96688cbee3d9a5
+PODFILE CHECKSUM: b5b85af6c5a972f60a9e73d550d3d8dc16681cd4
 
 COCOAPODS: 1.16.2

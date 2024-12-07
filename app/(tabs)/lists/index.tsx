@@ -17,6 +17,8 @@ interface Place {
   city: string;
   address: string;
   state: string;
+  longitude: number;
+  lattitude: number;
 }
 
 interface GroupedPlacesByCity {
