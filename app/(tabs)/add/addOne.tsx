@@ -4,6 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'; 
 import Button from '@/components/Button';
+import { Stack } from 'expo-router';
 
 
 //TODO:: - Just UI/UX for this page. I think all functionality is done.
@@ -103,7 +104,8 @@ export default function AddOne(){
     }
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Addrecommendation</Text>
+            {/* <Stack.Screen options={{ headerShown: false }} /> uncomment this to remove header, would need to add a back button */}
+            <Text style={styles.text}>Add a Place</Text>
             <View style={{zIndex: 1, flex: 0.5, width: '70%', marginTop: 15}}>
                 <GooglePlacesAutocomplete
                     placeholder='Search'
@@ -148,7 +150,12 @@ const styles = StyleSheet.create(
             color: '#ffff'
         },
         text: {
-            color: "#ffff"
-        }
+            color: '#ffff',
+            fontSize: 20,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            padding: 30,
+            margin: 20,
+        },
     }
 )

@@ -5,6 +5,7 @@ import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firest
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Button from '@/components/Button';
 import Icon from 'react-native-vector-icons/FontAwesome'; 
+import { Stack } from 'expo-router';
 
 
 export default function AddMany() {
@@ -109,6 +110,7 @@ export default function AddMany() {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
+            {/* <Stack.Screen options={{ headerShown: false }} /> uncomment this to remove header, would need to add a back button */}
             <Text style={styles.text}>Add Multiple Places</Text>
             <View style={styles.autocompleteContainer}>
                 <GooglePlacesAutocomplete
@@ -135,8 +137,6 @@ export default function AddMany() {
             </TouchableOpacity>
 
             <Text style={styles.text2}>Places To Be Added: </Text>
-
-            {/* List of pending places */}
             <FlatList
                 data={pendingPlaces}
                 keyExtractor={(item, index) => item.placeId || index.toString()}
