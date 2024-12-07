@@ -152,7 +152,6 @@ export default function City(){
                     location={currentLocation?.name} isVisible={isEditVisible} onClose={onEditClose}> 
                     <Button label={"Delete Recommendation"} onPress={()=>{deletePlace(currentLocation)}}/>    
                 </LocationEditModal>
-                <Link style={styles.text}href='./notificationExample'>Notification Example</Link>
             </View>  
         </View> 
     )

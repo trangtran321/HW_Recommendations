@@ -4,6 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import MapView, { PROVIDER_GOOGLE, Region } from 'react-native-maps'; 
 import * as Location from 'expo-location';
+// import { useLocation } from '@/utils/locationContext';
 
 // TODO:: 
 // 1. Put pins on map taken from Firestore
@@ -43,12 +44,12 @@ export default function Map(){
       }
       getCurrentLocation();
   }, []);
-    
+
     return (
       <View style={styles.container}>
         <MapView 
           style={StyleSheet.absoluteFill} 
-          // provider={PROVIDER_GOOGLE}
+          provider={PROVIDER_GOOGLE}
           initialRegion={currentRegion}
           showsUserLocation={true}
           showsMyLocationButton={true}

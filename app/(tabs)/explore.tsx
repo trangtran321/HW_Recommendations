@@ -6,6 +6,24 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import Button from '../../components/Button';
 
+import * as Location from 'expo-location';
+import NotificationService from '@/utils/notificationService';
+
+//TODO:: This is the current landing page after signing in, we can change it to jsut be the 'map.tsx' file
+//We can change this one to be the signout/delete user/profile page of user 
+
+interface Place {
+    name: string;
+    city: string;
+    address: string;
+    state: string;
+}
+
+interface GroupedPlacesByCity {
+    [city: string] : Place[];
+}
+
+
 export default function Profile() {
     const user = auth().currentUser;
     const [placeCount, setPlaceCount] = useState<number | null>(null);
@@ -87,6 +105,7 @@ export default function Profile() {
             </TouchableOpacity>
         </View>
     );
+
 }
 
 const styles = StyleSheet.create({
