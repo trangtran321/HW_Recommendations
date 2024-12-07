@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Button from '@/components/Button';
-import Icon from 'react-native-vector-icons/FontAwesome';  // Import FontAwesome icon package
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default function AddMany() {
@@ -57,7 +57,7 @@ export default function AddMany() {
             setPendingPlaces([...pendingPlaces, placeData]);
         }
         setPlaceDetails(placeData);
-        setText(placeData.name);
+        setText(''); 
     };
 
     useEffect(() => {
@@ -109,7 +109,7 @@ export default function AddMany() {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Add Multiple Recommendations</Text>
+            <Text style={styles.text}>Add Multiple Places</Text>
             <View style={styles.autocompleteContainer}>
                 <GooglePlacesAutocomplete
                     placeholder='Search'
@@ -130,8 +130,11 @@ export default function AddMany() {
                 />
             </View>
             
-            <Button label='Add Places' onPress={addAllPendingPlacesToList}/>
-            <Text style={styles.text}>Places To Add: </Text>
+            <TouchableOpacity style={styles.customButton} onPress={addAllPendingPlacesToList}>
+                <Text style={styles.customButtonText}>Add The Places Below To My List</Text>
+            </TouchableOpacity>
+
+            <Text style={styles.text}>Places To Be Added: </Text>
 
             <ScrollView style={styles.placeListContainer}>
                 {pendingPlaces.map((place, index) => (
@@ -211,5 +214,20 @@ const styles = StyleSheet.create({
     },
     placeAddress: {
         color: '#fff',
+    },
+    customButton: {
+        backgroundColor: '#ffd33d',
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 30,
+        marginTop: 20,
+        width: '70%',
+        alignItems: 'center',
+    },
+    customButtonText: {
+        color: '#25292e',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
 });
