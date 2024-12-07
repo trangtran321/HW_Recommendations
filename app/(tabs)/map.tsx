@@ -4,6 +4,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import MapView, { PROVIDER_GOOGLE, Region, Marker } from 'react-native-maps'; 
 import * as Location from 'expo-location';
+// import { useLocation } from '@/utils/locationContext';
 
 // TODO:: 
 // 1. Put pins on map taken from Firestore
@@ -204,7 +205,6 @@ export default function Map(){
   
     fetchLocations();
   }, []);
-
   return (
     <View style={styles.container}>
       <MapView
@@ -278,6 +278,7 @@ export default function Map(){
     )}
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({

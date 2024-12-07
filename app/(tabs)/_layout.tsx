@@ -8,7 +8,7 @@ export default function TabLayout(){
         <Tabs
             screenOptions={{
                 tabBarActiveTintColor: '#ffd33d',
-                headerStyle: { 
+                headerStyle: {
                     backgroundColor: '#25292e',
                 },
                 headerShadowVisible: false,
@@ -20,9 +20,9 @@ export default function TabLayout(){
             <Tabs.Screen 
                 name="explore" 
                 options={{
-                    title: 'Explore',
-                    tabBarIcon: ({color, focused}) => (
-                        <Ionicons name={focused? 'home-sharp' : 'home-outline'} color={color} size={24}/>
+                    title: 'Profile',
+                    tabBarIcon: ({ color, focused }) => (
+                        <Ionicons name={focused ? 'person' : 'person-outline'} color={color} size={24} />
                     ),
                 }}/>
             <Tabs.Screen 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, FlatList, SafeAreaView } from 'react-native';
-import { router } from 'expo-router';
+import { View, StyleSheet, Text, FlatList, SafeAreaView, TouchableOpacity, Image } from 'react-native';
+import { router, Stack } from 'expo-router';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import * as Location from 'expo-location';
@@ -75,44 +75,70 @@ export default function Index(){
     {relativeToDirectory: true},)
   }
     return (
-      <>
       <SafeAreaProvider>
-        <SafeAreaView style={styles.container}>
-          <FlatList 
-            horizontal={false}
-            numColumns={2}
-            contentContainerStyle={{alignItems: "stretch"}}
-            columnWrapperStyle={styles.citybox}
-            style={{width: "100%"}}
-            data={Object.keys(placesByCity)}
-            renderItem={({item}) => (
-                <Card 
-                  label={item}
-                  imageSource={require('../../../assets/images/react-logo.png')}
-                  onPress={()=>{handlePress(item)}}
-                  />
-            )}
-          />
-        </SafeAreaView>
+      <SafeAreaView style={styles.container}>     
+        <Stack.Screen options={{ headerShown: false }} /> 
+        <FlatList
+          data={Object.keys(placesByCity)}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => handlePress(item)} style={styles.cityContainer}>
+              <Image
+                source={require('../../../assets/images/react-logo.png')}
+                style={styles.cityImage}
+              />
+              <View style={styles.cityInfo}>
+                <Text style={styles.cityName}>{item}</Text>
+                <Text style={styles.savedPlaces}>{placesByCity[item].length} saved places</Text>
+              </View>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item) => item}
+          contentContainerStyle={styles.flatListContent}
+        />
+      </SafeAreaView>
     </SafeAreaProvider>
-  </>
     )
 }
 
 const styles = StyleSheet.create({
-    container: {
-      backgroundColor: '#25292e',
-      alignItems: 'center',
-      justifyContent: 'center',
-      height: '100%',
-      width: '100%',
-    },
-    citybox: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    text: {
-      color: '#ffff',
-    }
-  });
+  container: {
+    backgroundColor: '#25292e',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    width: '100%',
+  },
+  flatListContent: {
+    paddingBottom: 10,
+    paddingHorizontal: '5%',
+  },
+  cityContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginVertical: 10,
+    padding: 10,
+    backgroundColor: '#353B45',
+    borderRadius: 30,
+  },
+  cityInfo: {
+    flex: 1,
+    justifyContent: 'center',
+    marginLeft: 20
+  },
+  cityName: {
+    fontSize: 18,
+    color: '#ffffff',
+    fontWeight: 'bold',
+  },
+  savedPlaces: {
+    color: '#ffffff',
+    fontSize: 14,
+  },
+  cityImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+});

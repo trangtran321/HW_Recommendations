@@ -1,9 +1,10 @@
 import { useEffect, useState} from 'react';
-import { View, StyleSheet, Text} from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity} from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'; 
 import Button from '@/components/Button';
+import { Stack } from 'expo-router';
 
 
 //TODO:: - Just UI/UX for this page. I think all functionality is done.
@@ -103,7 +104,8 @@ export default function AddOne(){
     }
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Addrecommendation</Text>
+            {/* <Stack.Screen options={{ headerShown: false }} /> uncomment this to remove header, would need to add a back button */}
+            <Text style={styles.text}>Add a Place</Text>
             <View style={{zIndex: 1, flex: 0.5, width: '70%', marginTop: 15}}>
                 <GooglePlacesAutocomplete
                     placeholder='Search'
@@ -118,10 +120,10 @@ export default function AddOne(){
                     onFail={error => console.log(error)}
                 />
             </View>
-            <Button 
-                label='Add'
-                onPress={addPlaceToList}/>
-            <Text style={styles.text}> 
+            <TouchableOpacity style={styles.customButton} onPress={addPlaceToList}>
+                <Text style={styles.customButtonText}>Add The Place To My List</Text>
+            </TouchableOpacity>
+            <Text style={styles.text2}> 
                 {text}
             </Text>
         </View>
@@ -148,7 +150,36 @@ const styles = StyleSheet.create(
             color: '#ffff'
         },
         text: {
-            color: "#ffff"
-        }
+            color: '#ffff',
+            fontSize: 20,
+            fontWeight: 'bold',
+            textAlign: 'center',
+            padding: 30,
+            margin: 20,
+        },
+        text2: {
+        color: '#ffff',
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 30,
+        marginTop: -10,
+        },
+        customButton: {
+            backgroundColor: '#ffd33d',
+            paddingVertical: 12,
+            paddingHorizontal: 20,
+            borderRadius: 30,
+            marginTop: 20,
+            width: '70%',
+            alignItems: 'center',
+            marginBottom: 20,
+        },
+        customButtonText: {
+            color: '#25292e',
+            fontSize: 16,
+            fontWeight: 'bold',
+            textAlign: 'center'
+        },
     }
 )
