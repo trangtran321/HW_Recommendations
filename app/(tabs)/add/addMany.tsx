@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Button from '@/components/Button';
-import Icon from 'react-native-vector-icons/FontAwesome';  // Import FontAwesome icon package
+import Icon from 'react-native-vector-icons/FontAwesome'; 
+import { Stack } from 'expo-router';
 
 
 export default function AddMany() {
@@ -57,7 +58,7 @@ export default function AddMany() {
             setPendingPlaces([...pendingPlaces, placeData]);
         }
         setPlaceDetails(placeData);
-        setText(placeData.name);
+        setText(''); 
     };
 
     useEffect(() => {
@@ -108,92 +109,96 @@ export default function AddMany() {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.text}>Add Multiple Recommendations</Text>
-            <View style={styles.autocompleteContainer}>
-                <GooglePlacesAutocomplete
-                    placeholder='Search'
-                    onPress={(data, details = null) => {
-                        onPlaceSelected(data, details);
-                    }}
-                    fetchDetails={true}
-                    query={{
-                        key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
-                        language: 'en'
-                    }}
-                    onFail={error => console.log(error)}
-                    styles={{
-                        textInput: styles.textInput,
-                        container: styles.autocompleteInputContainer,
-                        listView: styles.autocompleteListView
-                    }}
-                />
-            </View>
-            
-            <Button label='Add Places' onPress={addAllPendingPlacesToList}/>
-            <Text style={styles.text}>Places To Add: </Text>
-
-            <ScrollView style={styles.placeListContainer}>
-                {pendingPlaces.map((place, index) => (
-                    <View key={index} style={styles.placeItem}>
-                        <View style={styles.placeTextContainer}>
-                            <Text style={styles.placeName}>{place.name}</Text>
-                            <Text style={styles.placeAddress}>{place.address}</Text>
-                        </View>
-                        <TouchableOpacity onPress={() => removePlaceFromPending(place.placeId)}>
-                            <Icon name="trash" size={20} color="#ff0000" />
-                        </TouchableOpacity>
+        <FlatList
+            data={pendingPlaces}
+            keyExtractor={(item, index) => item.placeId || index.toString()}
+            ListHeaderComponent={
+                
+                <View style={styles.header}>
+                    {/* <Stack.Screen options={{ headerShown: false }} />  */}
+                    <Text style={styles.text}>Add Multiple Places</Text>
+                    <View style={styles.autocompleteContainer}>
+                        <GooglePlacesAutocomplete
+                            placeholder="Search"
+                            onPress={(data, details = null) => onPlaceSelected(data, details)}
+                            fetchDetails={true}
+                            query={{
+                                key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
+                                language: 'en',
+                            }}
+                            styles={{
+                                textInput: styles.textInput,
+                                container: styles.autocompleteInputContainer,
+                            }}
+                        />
                     </View>
-                ))}
-            </ScrollView>
-        </View>
+                    <TouchableOpacity style={styles.customButton} onPress={addAllPendingPlacesToList}>
+                        <Text style={styles.customButtonText}>Add The Places Below To My List</Text>
+                    </TouchableOpacity>
+                    <Text style={styles.text2}>Places To Be Added: </Text>
+                </View>
+            }
+        
+            renderItem={({ item }) => (
+                <View style={styles.placeItem}>
+                    <View style={styles.placeTextContainer}>
+                        <Text style={styles.placeName}>{item.name}</Text>
+                        <Text style={styles.placeAddress}>{item.address}</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => removePlaceFromPending(item.placeId)}>
+                        <Icon name="trash" size={20} color="#ff0000" />
+                    </TouchableOpacity>
+                </View>
+            )}
+            style={styles.placeListContainer}
+            contentContainerStyle={{ backgroundColor: '#25292e', paddingBottom: 20 }}
+        />
     );
 }
-
 const styles = StyleSheet.create({
+    header: {
+        alignItems: 'center',
+        backgroundColor: '#25292e',
+    },
     container: {
-        flex: 1,
+        flexGrow: 1,
         backgroundColor: '#25292e',
         alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        height: '100%',
+        // justifyContent: 'flex-start',
+        // width: '100%',
+        paddingBottom: 20,
     },
     autocompleteContainer: {
-        zIndex: 10,
-        flex: 0.5,
+        // zIndex: 10,
         width: '70%',
-        position: 'relative',
-    },
-    autocompleteInputContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 10,
-    },
-    input: {
-        height: 40,
-        width: '50%',
-        borderColor: '#ffff',
-        borderWidth: 1,
-        padding: 10,
-        margin: 10,
-        color: '#ffff',
+        marginTop: 20,
     },
     text: {
-        color: "#ffff",
-        padding: 20,
-        
-
+        color: '#ffff',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 30,
+        margin: 20,
+    },
+    text2: {
+        color: '#ffff',
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 30,
+        // marginTop: -10,
     },
     placeListContainer: {
-        width: '80%',
-        marginTop: 20,
+        width: '100%',
+        flex:1,
+        backgroundColor: '#25292e'
+        // marginTop: 20,
     },
     placeItem: {
         backgroundColor: '#444',
         marginBottom: 10,
+        margin:20,
         padding: 10,
         borderRadius: 5,
         flexDirection: 'row',
@@ -202,14 +207,31 @@ const styles = StyleSheet.create({
     },
     placeTextContainer: {
         flex: 1,
-        justifyContent: 'center',
+        width: '100%',
+        // justifyContent: 'center',
     },
     placeName: {
         color: '#fff',
         fontWeight: 'bold',
-        marginBottom: 5,
+        // marginBottom: 5,
     },
     placeAddress: {
         color: '#fff',
+    },
+    customButton: {
+        backgroundColor: '#ffd33d',
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 30,
+        marginTop: 20,
+        width: '70%',
+        alignItems: 'center',
+        marginBottom: 20,
+    },
+    customButtonText: {
+        color: '#25292e',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center'
     },
 });
