@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -108,87 +108,84 @@ export default function AddMany() {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView contentContainerStyle={styles.container}>
             <Text style={styles.text}>Add Multiple Places</Text>
             <View style={styles.autocompleteContainer}>
                 <GooglePlacesAutocomplete
-                    placeholder='Search'
+                    placeholder="Search"
                     onPress={(data, details = null) => {
                         onPlaceSelected(data, details);
                     }}
                     fetchDetails={true}
                     query={{
                         key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
-                        language: 'en'
+                        language: 'en',
                     }}
-                    onFail={error => console.log(error)}
+                    onFail={(error) => console.log(error)}
                     styles={{
                         textInput: styles.textInput,
                         container: styles.autocompleteInputContainer,
-                        listView: styles.autocompleteListView
+                        listView: styles.autocompleteListView,
                     }}
                 />
             </View>
-            
+
             <TouchableOpacity style={styles.customButton} onPress={addAllPendingPlacesToList}>
                 <Text style={styles.customButtonText}>Add The Places Below To My List</Text>
             </TouchableOpacity>
 
-            <Text style={styles.text}>Places To Be Added: </Text>
+            <Text style={styles.text2}>Places To Be Added: </Text>
 
-            <ScrollView style={styles.placeListContainer}>
-                {pendingPlaces.map((place, index) => (
-                    <View key={index} style={styles.placeItem}>
+            {/* List of pending places */}
+            <FlatList
+                data={pendingPlaces}
+                keyExtractor={(item, index) => item.placeId || index.toString()}
+                renderItem={({ item }) => (
+                    <View style={styles.placeItem}>
                         <View style={styles.placeTextContainer}>
-                            <Text style={styles.placeName}>{place.name}</Text>
-                            <Text style={styles.placeAddress}>{place.address}</Text>
+                            <Text style={styles.placeName}>{item.name}</Text>
+                            <Text style={styles.placeAddress}>{item.address}</Text>
                         </View>
-                        <TouchableOpacity onPress={() => removePlaceFromPending(place.placeId)}>
+                        <TouchableOpacity onPress={() => removePlaceFromPending(item.placeId)}>
                             <Icon name="trash" size={20} color="#ff0000" />
                         </TouchableOpacity>
                     </View>
-                ))}
-            </ScrollView>
-        </View>
+                )}
+                style={styles.placeListContainer}
+            />
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flexGrow: 1,
         backgroundColor: '#25292e',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         width: '100%',
-        height: '100%',
+        paddingBottom: 20,
     },
     autocompleteContainer: {
         zIndex: 10,
-        flex: 0.5,
         width: '70%',
-        position: 'relative',
-    },
-    autocompleteInputContainer: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 10,
-    },
-    input: {
-        height: 40,
-        width: '50%',
-        borderColor: '#ffff',
-        borderWidth: 1,
-        padding: 10,
-        margin: 10,
-        color: '#ffff',
+        marginTop: 20,
     },
     text: {
-        color: "#ffff",
-        padding: 20,
-        
-
+        color: '#ffff',
+        fontSize: 20,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 30,
+        margin: 20,
+    },
+    text2: {
+        color: '#ffff',
+        fontSize: 15,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        padding: 30,
+        marginTop: -10,
     },
     placeListContainer: {
         width: '80%',
@@ -223,6 +220,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         width: '70%',
         alignItems: 'center',
+        marginBottom: 20,
     },
     customButtonText: {
         color: '#25292e',
