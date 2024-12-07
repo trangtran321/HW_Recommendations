@@ -5,7 +5,7 @@ import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestor
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; 
 import * as Notifications from 'expo-notifications';
 import Button from '@/components/Button';
-import { router, Stack } from 'expo-router';
+import { router, Stack } from 'expo-router'; 
 
 //TODO: 
 //    1.UI/UX to make buttons more pleasing and clear that they are buttons. 
