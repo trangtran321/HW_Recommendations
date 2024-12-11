@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
+import { View, StyleSheet, Text, FlatList, Pressable } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
 import * as Notifications from 'expo-notifications';
@@ -191,12 +191,18 @@ export default function NotificationService(){
   };
 
     return (
-      <View style={styles.container}>
-        <Button
-          label={isTracking ? 'Stop Tracking' : 'Start Tracking'}
+      <View >
+        <Pressable
+          style={{
+            backgroundColor: '#ffd33d',
+            padding: 10,
+            borderRadius: 5,
+            marginBottom: 15}}
           onPress={isTracking ? stopLocationTracking : startLocationTracking}
-        />
-      </View>
+        >
+          <Text>{isTracking ? 'Stop Tracking' : 'Start Tracking'}</Text>
+       </Pressable>
+    </View>
     )
 }
 

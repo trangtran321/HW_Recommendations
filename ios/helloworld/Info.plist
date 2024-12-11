@@ -34,19 +34,13 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>com.googleusercontent.apps.323188340295-eu7cf0ajbtnmi8fmce0ti942or38nl92</string>
+          <string>com.googleusercontent.apps.323188340295-923ib6kd8urab6v83nuvm5seet0vbhb9</string>
         </array>
       </dict>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
           <string>exp+helloworld</string>
-        </array>
-      </dict>
-      <dict>
-        <key>CFBundleURLSchemes</key>
-        <array>
-          <string>com.googleusercontent.apps._some_id_here_</string>
         </array>
       </dict>
     </array>
@@ -90,6 +84,7 @@
     <key>UIBackgroundModes</key>
     <array>
       <string>fetch</string>
+      <string>remote-notification</string>
       <string>location</string>
     </array>
     <key>UILaunchStoryboardName</key>

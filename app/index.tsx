@@ -82,6 +82,9 @@ export default function Index() {
       <TouchableOpacity style={styles.button} onPress={_signIn}>
                     <Text style={styles.buttonText}>Sign In</Text>
                 </TouchableOpacity>
+        //  <FontAwesome.Button name="google" backgroundColor="#4285F4" onPress={_signIn}>
+        // Sign In
+        // </FontAwesome.Button>
       )
     }
     </View>

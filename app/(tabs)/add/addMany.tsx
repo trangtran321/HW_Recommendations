@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList } from 'react-native';
+import { View, StyleSheet, Text, ScrollView, TouchableOpacity, FlatList, Pressable } from 'react-native';
 import auth from '@react-native-firebase/auth';
 import firestore, { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
 import { GooglePlaceData, GooglePlaceDetail, GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Button from '@/components/Button';
-import Icon from 'react-native-vector-icons/FontAwesome'; 
+// import Icon from 'react-native-vector-icons/FontAwesome'; 
+import { Ionicons } from '@expo/vector-icons';
 import { Stack } from 'expo-router';
 
 
@@ -104,7 +105,7 @@ export default function AddMany() {
         }
     };
 
-    const removePlaceFromPending = (placeId: string) => {
+    const removePlaceFromPending = (placeId: string|undefined) => {
         setPendingPlaces(pendingPlaces.filter((place) => place.placeId !== placeId));
     };
 
@@ -123,13 +124,10 @@ export default function AddMany() {
                             onPress={(data, details = null) => onPlaceSelected(data, details)}
                             fetchDetails={true}
                             query={{
-                                key: 'AIzaSyBos1E_9ZLoq8C7A9RoMBYgOEpjfcrBf3g',
+                                key: 'AIzaSyCW-I4MKP209wKjAB3uq0KPb1wG92tgFQE',
                                 language: 'en',
                             }}
-                            styles={{
-                                textInput: styles.textInput,
-                                container: styles.autocompleteInputContainer,
-                            }}
+                            
                         />
                     </View>
                     <TouchableOpacity style={styles.customButton} onPress={addAllPendingPlacesToList}>
@@ -145,9 +143,9 @@ export default function AddMany() {
                         <Text style={styles.placeName}>{item.name}</Text>
                         <Text style={styles.placeAddress}>{item.address}</Text>
                     </View>
-                    <TouchableOpacity onPress={() => removePlaceFromPending(item.placeId)}>
-                        <Icon name="trash" size={20} color="#ff0000" />
-                    </TouchableOpacity>
+                    <Pressable onPress={()=>removePlaceFromPending(item.placeId)}>
+                        <Ionicons name="trash" size={24} color="red"/>
+                    </Pressable>
                 </View>
             )}
             style={styles.placeListContainer}
@@ -171,6 +169,7 @@ const styles = StyleSheet.create({
     autocompleteContainer: {
         // zIndex: 10,
         width: '70%',
+        flex: 1, 
         marginTop: 20,
     },
     text: {

@@ -11,15 +11,12 @@ type Props={
 
 export default function Button({label, onPress, children, onLongPress}:Props){
     return (
-        <View style={styles.buttonContainer}>
             <Pressable 
-                style={styles.button}
                 onPress={onPress}
                 onLongPress={onLongPress}>
                 <Text style={styles.buttonLabel}> {label} </Text>
                 {children}
             </Pressable>
-        </View>
     )
 }
 

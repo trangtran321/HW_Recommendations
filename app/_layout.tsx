@@ -44,7 +44,7 @@ export default function RootLayout() {
 
     //if user not valid but trying to access explore, etc. 
     else if (!user && inAuthGroup){
-      router.replace('/');
+      router.replace('./index');
     }
   }, [user, initializing])
 

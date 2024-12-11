@@ -23,7 +23,8 @@
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app needs to keep track of a user's location so that it can send timely notifications based on user's location and surrounding businesses.",
         "NSSpeechRecognitionUsageDescription": "This feature will be added to aid users who are unable to use tap and swipe features to add recommendations and navigate through the app.",
         "NSLocationWhenInUseUsageDescription": "This app needs to keep track of a user's location so that it can send timely notifications based on user's location and surrounding businesses.",
-        "NSLocationAlwaysUsageDescription": "This app needs to keep track of a user's location so that it can send timely notifications based on user's location and surrounding businesses."
+        "NSLocationAlwaysUsageDescription": "This app needs to keep track of a user's location so that it can send timely notifications based on user's location and surrounding businesses.",
+        "UIBackgroundModes": ["fetch", "location", "remote-notification"]
       }
     },
     "android": {
@@ -44,7 +45,7 @@
       [
         "@react-native-google-signin/google-signin",
         {
-          "iosUrlScheme": "com.googleusercontent.apps._some_id_here_"
+          "iosUrlScheme": "com.googleusercontent.apps.323188340295-923ib6kd8urab6v83nuvm5seet0vbhb9"
         }
       ],
       [

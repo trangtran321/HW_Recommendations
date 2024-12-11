@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import {StyleSheet, View, Text, FlatList} from 'react-native';
+import {StyleSheet, View, Text, FlatList, SafeAreaView, PanResponder, Pressable} from 'react-native';
 import { Link, useLocalSearchParams } from 'expo-router';
 import Button from '@/components/Button';
 import * as ExpoGooglePlaces from 'expo-google-places';
 import auth from '@react-native-firebase/auth';
 import LocationDetailsModal from '../../../components/LocationDetailsModal';
-import LocationEditModal from '../../../components/LocationEditModal';
-import firestore, {FirebaseFirestoreTypes} from '@react-native-firebase/firestore';
+import firestore from '@react-native-firebase/firestore';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 //TODO::
     //UI/UX for modal 
@@ -41,10 +41,11 @@ export default function City(){
     if (typeof(recs) == "string"){
         recommendations = JSON.parse(recs);
     }
-
+    // console.log(recommendations)
     function handlePress(item: Place) {
         //show modal of information
         setIsModalVisible(true);
+        setCurrentLocation(item); 
         const fetchPredictions = async(search:string) => {
             try{
                 const predictions = await ExpoGooglePlaces.fetchPlaceWithSession(search, [
@@ -72,8 +73,8 @@ export default function City(){
     }
 
     function handleLongPress(item:Place) {
-        setCurrentLocation(item); 
         setIsEditVisible(true);
+        setCurrentLocation(item); 
         console.log("long pressed!");
     }
 
@@ -102,7 +103,7 @@ export default function City(){
     }
 
     return(
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <Text style={styles.header}> 
                 {city}
             </Text>
@@ -117,8 +118,11 @@ export default function City(){
                             <Button 
                                 label={item.name.trim()}
                                 onPress={()=>{handlePress(item)}}
-                                onLongPress={()=>{handleLongPress(item)}}
-                                />
+                                // onLongPress={()=>{handleLongPress(item)}}
+                            />
+                            <Pressable  onPress={()=>deletePlace(item)}>
+                                <Ionicons name="trash" size={24} color="white"/>
+                            </Pressable>
                         </View>
                         
                     )}/>
@@ -148,27 +152,21 @@ export default function City(){
                         </View>
                     : null}
                 </LocationDetailsModal>
-                <LocationEditModal
-                    location={currentLocation?.name} isVisible={isEditVisible} onClose={onEditClose}> 
-                    <Button label={"Delete Recommendation"} onPress={()=>{deletePlace(currentLocation)}}/>    
-                </LocationEditModal>
             </View>  
-        </View> 
+        </SafeAreaView> 
     )
 }
 
 const styles = StyleSheet.create({
     button: {
-        alignSelf: 'center',
-        color: '#ffff',
-        fontSize: 18, 
-        borderColor: '#ffff',
-        borderWidth: 2, 
-        borderRadius: 6,
-        margin: 8, 
-        width: '65%',
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        width: '100%',
+        marginVertical: 5,
+        padding: 10,
+        backgroundColor: '#353B45',
+        borderRadius: 30,
     },
     container: {
         backgroundColor: '#25292e',
@@ -191,7 +189,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 15, 
         color: '#ffff', 
-        textAlign: 'center'
+        textAlign: 'left'
     }
 })
 

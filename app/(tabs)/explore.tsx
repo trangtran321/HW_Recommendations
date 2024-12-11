@@ -26,7 +26,7 @@ interface GroupedPlacesByCity {
 
 export default function Profile() {
     const user = auth().currentUser;
-    const [placeCount, setPlaceCount] = useState<number | null>(null);
+    const [placeCount, setPlaceCount] = useState<number>(0);
     const [cityCount, setCityCount] = useState<number | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -36,11 +36,12 @@ export default function Profile() {
             await GoogleSignin.signOut();
             await auth().signOut();
             alert("You are signed out");
-            router.replace('/');
+            
         } catch (error) {
             console.error("Logout Error:", error);
             alert("Failed to sign out. Please try again.");
         }
+        router.replace('/');
     };
 
     useEffect(() => {
@@ -99,7 +100,7 @@ export default function Profile() {
                     )}
                 </View>
             )}
-
+            <NotificationService />
             <TouchableOpacity style={styles.actionButton} onPress={handleLogout}>
                 <Text style={styles.buttonText}>Sign Out</Text>
             </TouchableOpacity>

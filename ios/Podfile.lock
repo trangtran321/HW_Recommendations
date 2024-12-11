@@ -1168,7 +1168,7 @@ PODS:
     - ExpoModulesCore
   - EXNotifications (0.29.8):
     - ExpoModulesCore
-  - Expo (52.0.10):
+  - Expo (52.0.18):
     - ExpoModulesCore
   - expo-dev-client (5.0.4):
     - EXManifests
@@ -1390,7 +1390,7 @@ PODS:
     - ExpoModulesCore
   - ExpoDevice (7.0.1):
     - ExpoModulesCore
-  - ExpoFileSystem (18.0.4):
+  - ExpoFileSystem (18.0.5):
     - ExpoModulesCore
   - ExpoFont (13.0.1):
     - ExpoModulesCore
@@ -1413,7 +1413,7 @@ PODS:
     - ExpoModulesCore
   - ExpoLocation (18.0.2):
     - ExpoModulesCore
-  - ExpoModulesCore (2.0.5):
+  - ExpoModulesCore (2.1.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -3559,8 +3559,6 @@ DEPENDENCIES:
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - Google-Maps-iOS-Utils
-  - GoogleMaps
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
   - RCT-Folly/Fabric (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -3595,7 +3593,7 @@ DEPENDENCIES:
   - React-microtasksnativemodule (from `../node_modules/react-native/ReactCommon/react/nativemodule/microtasks`)
   - react-native-config (from `../node_modules/react-native-config`)
   - react-native-get-random-values (from `../node_modules/react-native-get-random-values`)
-  - react-native-google-maps (from `/Users/NhanLe/Documents/NMSU/Grad/CS515/HW_Recommendations/node_modules/react-native-maps`)
+  - react-native-google-maps (from `/Users/trangtran/Documents/GitHub/HW_Recommendations/node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-webview (from `../node_modules/react-native-webview`)
@@ -3811,7 +3809,7 @@ EXTERNAL SOURCES:
   react-native-get-random-values:
     :path: "../node_modules/react-native-get-random-values"
   react-native-google-maps:
-    :path: "/Users/NhanLe/Documents/NMSU/Grad/CS515/HW_Recommendations/node_modules/react-native-maps"
+    :path: "/Users/trangtran/Documents/GitHub/HW_Recommendations/node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
   react-native-safe-area-context:
@@ -3906,7 +3904,7 @@ SPEC CHECKSUMS:
   EXJSONUtils: 01fc7492b66c234e395dcffdd5f53439c5c29c93
   EXManifests: f30a0c5d3d6cad8db9c01bab579e0aa0df5d3cb2
   EXNotifications: c5b96ad5fffef5515c9cfc7887ae10f8720c70a5
-  Expo: 7571b8c65b98450ac23a123dcc4d8ee3d50f1e42
+  Expo: dc7907584c3517c592315a59719180037703ff33
   expo-dev-client: 8c99b4979086a27f19e773e96ef10219102a5c4f
   expo-dev-launcher: 34b5adbf64f8a625f95b94bda7040780f7f46805
   expo-dev-menu: 2c11782144f1f7299aa2715a9d2a043d0aa358c5
@@ -3916,7 +3914,7 @@ SPEC CHECKSUMS:
   ExpoBackgroundFetch: a3080ab72736b60441adf5f452919426c62e0533
   ExpoBlur: 562b3da84d3cd79016c411671eaf71a404266415
   ExpoDevice: e24dd19a43065182eb246bc0e7f84186862f1e83
-  ExpoFileSystem: dc2679a2b5d4c465ca881129074da95faee943d5
+  ExpoFileSystem: 2161e16165279fb46e138d8ea8795c71cc6718be
   ExpoFont: 7522d869d84ee2ee8093ee997fef5b86f85d856b
   ExpoGooglePlaces: c7e173d82412c6812437893042a5e094e5b4d094
   ExpoHaptics: e636188d1d5f7ccb79f3c1bfab47aaf5a1768c73
@@ -3925,7 +3923,7 @@ SPEC CHECKSUMS:
   ExpoKeepAwake: 783e68647b969b210a786047c3daa7b753dcac1f
   ExpoLinking: a8332a219379ba80f8e612d5a5de4a3da446886e
   ExpoLocation: e0c5b5212381b0b800a2c1f715be823d17c51b05
-  ExpoModulesCore: 6e6305a2f5fde2dfc6cb22c04a42a703d4c1673f
+  ExpoModulesCore: 62a6f1e14bbe4d61cf7d23cebda68090f9f6915f
   ExpoSplashScreen: 43692d041bf848883410ed9d8836871ca5cf4d6a
   ExpoSymbols: 81d7f433d7a7b20658029eae524a4fa93627159e
   ExpoSystemUI: d8fb1abd91c7283d8ead3df77ed0575b85f1bb42
@@ -4038,6 +4036,6 @@ SPEC CHECKSUMS:
   UMAppLoader: bda51f73f8599e336a778b23e0956130d1e244d5
   Yoga: 513b871d622689bd53b51481bbcfb6b8f1a3de5b
 
-PODFILE CHECKSUM: b5b85af6c5a972f60a9e73d550d3d8dc16681cd4
+PODFILE CHECKSUM: 7de174beb5c736b5b34f988d9d96688cbee3d9a5
 
 COCOAPODS: 1.16.2
