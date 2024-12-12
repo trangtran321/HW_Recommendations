@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, FlatList, SafeAreaView, TouchableOpacity, Image } from 'react-native';
+import { View, StyleSheet, Text, FlatList, SafeAreaView, TouchableOpacity, Image, TextInput } from 'react-native';
 import { router, Stack } from 'expo-router';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -29,6 +29,8 @@ export default function Index(){
   const user = auth().currentUser; 
   const [placesByCity, setPlacesByCity] = useState<GroupedPlacesByCity>({});
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
+  const [filteredCities, setFilteredCities] = useState<string[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   //Get permission to track user and get current location 
   useEffect(() => {
@@ -61,11 +63,12 @@ export default function Index(){
               }, {}); 
 
               setPlacesByCity(groupedByCity);
+              setFilteredCities(Object.keys(groupedByCity)); 
           }
       }
 
       fetchPlaces();
-  }, [user, placesByCity])
+  }, [user])
 
   const handlePress = (city:string) => {
     const recommendations = JSON.stringify(placesByCity[city])
@@ -74,12 +77,33 @@ export default function Index(){
     router.push({pathname: "./[city]", params: {city: city, recs: recommendations}},
     {relativeToDirectory: true},)
   }
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim() === '') {
+      setFilteredCities(Object.keys(placesByCity));
+    } else {
+      setFilteredCities(
+        Object.keys(placesByCity).filter(city =>
+          city.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+    }
+  };
+
     return (
       <SafeAreaProvider>
       <SafeAreaView style={styles.container}>     
         <Stack.Screen options={{ headerShown: false }} /> 
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search cities..."
+          placeholderTextColor="#aaa"
+          value={searchQuery}
+          onChangeText={handleSearch}
+        />
         <FlatList
-          data={Object.keys(placesByCity)}
+          data={filteredCities}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => handlePress(item)} style={styles.cityContainer}>
               <Image
@@ -94,6 +118,7 @@ export default function Index(){
           )}
           keyExtractor={(item) => item}
           contentContainerStyle={styles.flatListContent}
+          ListEmptyComponent={<Text style={styles.emptyText}>No cities found.</Text>}
         />
       </SafeAreaView>
     </SafeAreaProvider>
@@ -140,5 +165,21 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
+  },
+  searchBar: {
+    width: '90%',
+    height: 40,
+    backgroundColor: '#353B45',
+    borderRadius: 20,
+    paddingHorizontal: 15,
+    marginBottom: 15,
+    color: '#ffffff',
+    fontSize: 16,
+  },
+  emptyText: {
+    color: '#aaa',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
